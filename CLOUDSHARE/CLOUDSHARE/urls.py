@@ -1,8 +1,7 @@
-"""
-URL configuration for CLOUDSHARE project.
+"""fileupload URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/4.2/topics/http/urls/
+    https://docs.djangoproject.com/en/3.2/topics/http/urls/
 Examples:
 Function views
     1. Add an import:  from my_app import views
@@ -22,9 +21,13 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from api.views import *
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
-    path("upload/",HandleFileView.as_view() ),
+    path('', home),
+    path('download/<uid>/', download),
+    path('handle/', HandleFileUpload.as_view()),
+
+    path('admin/', admin.site.urls),
 ]
+
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,
